@@ -1,0 +1,31 @@
+#!/usr/sbin/nft -f
+flush ruleset
+define oiface={enp*}
+define gateway={}
+table inet filter {
+        chain input {
+                type filter hook input priority filter; policy drop;
+                ct state invalid drop
+                ct state {established,related} accept
+
+                iifname "lo" ip saddr 127.0.0.1 log prefix "nft-in-lo" accept
+
+                log prefix "nft-in-drop" drop
+
+        chain forward {
+                type filter hook forward priority filter; policy drop;
+                log prefix "nft-fwd-drop " drop
+        }
+        chain output {
+                type filter hook output priority filter; policy drop;
+                ct state invalid drop
+                ct state {established,related} accept
+
+                oifname "lo" ip daddr 127.0.0.1 log prefix "nft-out-lo" accept
+
+                oifname $oiface ip daddr $gateway udp dport 53 accept
+                oifname $oiface ip daddr $gateway udp dport 123 accept
+
+                log prefix "nft-out-drop" drop
+        }
+}
