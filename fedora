@@ -1,0 +1,5 @@
+# install Fedora-Everything-netinst-x86_64-40-1.14.iso
+
+dnf remove avahi avahi-libs libdaemon NetworkManager firewalld openssh-server
+
+dnf install chrony systemd-networkd nftables
