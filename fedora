@@ -1,5 +1,21 @@
 # install Fedora-Everything-netinst-x86_64-40-1.14.iso
 
-dnf remove avahi avahi-libs libdaemon NetworkManager firewalld openssh-server
+dnf remove atheros-firmware
+dnf remove bluez
+dnf remove brcmfmac-firmware
+dnf remove cirrus-audio-firmware
+dnf remove dhcp-client
+dnf remove flashrom
+dnf remove intel-audio-firmware
+dnf remove intel-gpu-firmware
+dnf remove linux-firmware-whence
+dnf remove ntfs-3g*
+dnf remove sssd*
+dnf remove avahi*
+dnf remove NetworkManager 
+dnf remove firewalld 
+dnf remove openssh-server
 
+dnf install amd-gpu-firmware
+dnf install amd-ucode-firmware
 dnf install chrony systemd-networkd nftables
