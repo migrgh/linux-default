@@ -1,0 +1,29 @@
+# monitoring
+
+top
+	u sort by user
+	M sort by memory usage
+	P sort by cpu usage
+	k kill process
+	
+# process
+ps aux
+
+# memory
+free -m
+
+# block devices and file systems
+lsblk
+blkid
+partx -s /dev/sda
+findmnt
+df -h
+du -h
+
+# hardware information
+lspci -v
+lsusb -v
+lspcu
+
+# kernel modules
+lsmod | sort
